@@ -71,8 +71,8 @@ def creat_voc_image(file_list_path='data/train_down_sample.csv',save_path='data/
             image.save(save_path+name,quality=95,subsampling=0)
             ftrainval.write(save_path+name+ann_in_txt)
             num+=1
-            if num>20:
-                break
+            # if num>20:
+            #     break
     ftrainval.close()
     print('create finished!')
 
