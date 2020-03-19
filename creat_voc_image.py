@@ -18,7 +18,7 @@ label2num = {'长马甲': 0, '古装': 1, '短马甲': 2, '背心上衣': 3, '�
 def creat_voc_image(file_list_path='data/train_down_sample.csv',save_path='data/JPEGImages/',save_txt_path='data/labels/trainval.txt'):
     '''
     In the first time
-    Do not forget  mkdir JPEGImages and mkdir label in data/
+    Do not forget  mkdir JPEGImages and mkdir labels in data/
     --------------------------------------------------------
     if you want to creat test.txt
     make:
