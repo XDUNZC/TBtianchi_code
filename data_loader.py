@@ -140,11 +140,11 @@ class My_DataLoader(Dataset):
 
 
 def main():
-    import visdom
+    # import visdom
     import time
     import torchvision
 
-    viz = visdom.Visdom()
+    # viz = visdom.Visdom()
 
     # tf = transforms.Compose([
     #                 transforms.Resize((64,64)),
@@ -177,9 +177,9 @@ def main():
         print('sample: ', x.shape, np.shape(y))
         print(y)
 
-        viz.images(db.apply_box(x,y), nrow=8, win='sample_image', opts=dict(title='sample_image'))
-        viz.text(str(y), win='sample_annotations', opts=dict(title='sample_annotations'))
-        time.sleep(10)
+        # viz.images(db.apply_box(x,y), nrow=8, win='sample_image', opts=dict(title='sample_image'))
+        # viz.text(str(y), win='sample_annotations', opts=dict(title='sample_annotations'))
+        # time.sleep(10)
 
 
 if __name__ == '__main__':
