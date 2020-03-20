@@ -52,8 +52,8 @@ def translate_txt(trainval_path='./data/labels/trainval.txt',train_file_path='./
                     new_box=new_box+str(w)+' '+str(h)+'\n'
                     label_file.write(new_box)
             num+=1
-            if num==20:
-                break
+            # if num==20:
+            #     break
 
     index_file.close()
 
