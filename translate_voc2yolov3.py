@@ -1,10 +1,10 @@
 ##########
-translate voc to yolov3 code dataset
+# translate voc to yolov3 code dataset
 ##########
 import cv2
 
 
-def translate_txt(trainval_path='./data/labels/trainval.txt',train_file_path='./data/',labels_path='./data/labels/',model='train')
+def translate_txt(trainval_path='./data/labels/trainval.txt',train_file_path='./data/',labels_path='./data/labels/',model='train'):
     # limit
     num=0
     # index file
@@ -20,20 +20,24 @@ def translate_txt(trainval_path='./data/labels/trainval.txt',train_file_path='./
             # write index file
             index_file.write(img_path+'\n')
             # write label file
-            img_name = img_path.splite('/')[-1].split('.')[0]
+            img_name = img_path.split('/')[-1].split('.')[0]
             with open(labels_path+img_name+'.txt','w') as label_file:
                 # read img and get w,h
-                img = cv2.imread(dirfile)
+                img = cv2.imread(img_path)
                 img_h,img_w = img.shape[:-1]
                 # split box
                 line=line[1:]
+                print(line)
                 for box in line:
+                    print('in box for')
                     if box =='':
+                        print('box=None')
                         break
                     box=box.split(',')
+                    print(box)
                     new_box=''
                     # add label
-                    new_box=new_box+box[4]
+                    new_box=new_box+box[4]+' '
                     # scale to [0,1]
                     x1=float(box[0])
                     y1=float(box[1])
@@ -46,9 +50,10 @@ def translate_txt(trainval_path='./data/labels/trainval.txt',train_file_path='./
                     # write
                     new_box=new_box+str(x)+' '+str(y)+' '
                     new_box=new_box+str(w)+' '+str(h)+'\n'
-        num+=1
-        if num==20:
-            break
+                    label_file.write(new_box)
+            num+=1
+            if num==20:
+                break
 
     index_file.close()
 
