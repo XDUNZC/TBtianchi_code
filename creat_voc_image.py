@@ -53,13 +53,13 @@ def creat_voc_image_xml(file_list_path='data/train_down_sample.csv',save_path='d
                 image = Image.open(image).convert('RGB')
                 with open(ann, 'r') as f:
                     ann = json.load(f)['annotations']
-                box_with_label=[]
-                for item in ann:
-                    box_with_label.append(item['box']+','+ann['label'])
-                width,height =  image.size
-                save_xml(save_path+name,box_with_label,width=width,height=height,save_dir='data/Annotations')
-                if not os.path.exists(save_path+name):
-                    image.save(save_path+name,quality=95,subsampling=0)
+            box_with_label=[]
+            for item in ann:
+                box_with_label.append(item['box']+','+ann['label'])
+            width,height =  image.size
+            save_xml(save_path+name,box_with_label,width=width,height=height,save_dir='data/Annotations')
+            if not os.path.exists(save_path+name):
+                image.save(save_path+name,quality=95,subsampling=0)
 
 
     print('create finished!')
@@ -226,17 +226,22 @@ def creat_voc_ann(file_path='data/labels/trainval.txt'):
     return
 
 def main():
-    # 生成voc的图片
-    # creat_voc_image_xml()
-    # creat_voc_image_xml(file_list_path='data/val_down_sample.csv')
-    #
-    # # 生成voc的txt
-    # creat_voc_txt()
-    # creat_voc_txt(file_list_path='data/val_down_sample.csv')
-    #
-    # # 将trainval.txt 划分成为训练集和测试集
-    # split_train_and_val_dataset()
+    '''
+    巡行前生成data/Annotations 和data/labels 文件夹
 
-    split_fake_train_val_test_dataset()
+    :return:
+    '''
+    # 生成voc的图片和xml
+    creat_voc_image_xml()
+    creat_voc_image_xml(file_list_path='data/val_down_sample.csv')
+
+    # 生成voc的txt
+    creat_voc_txt()
+    creat_voc_txt(file_list_path='data/val_down_sample.csv')
+
+    # 将trainval.txt 划分成为训练集和测试集
+    split_train_and_val_dataset()
+
+    # split_fake_train_val_test_dataset()
 if __name__ == '__main__':
     main()
